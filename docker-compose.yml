@@ -1,6 +1,6 @@
 services:
   app1:
-    build: ./app
+    image: app-mensagens:latest
     ports:
       - "5001:5000"
     volumes:
@@ -12,7 +12,7 @@ services:
       - PEERS=app2,app3
 
   app2:
-    build: ./app
+    image: app-mensagens:latest
     ports:
       - "5002:5000"
     volumes:
@@ -24,7 +24,7 @@ services:
       - PEERS=app1,app3
 
   app3:
-    build: ./app
+    image: app-mensagens:latest
     ports:
       - "5003:5000"
     volumes:
@@ -37,7 +37,7 @@ services:
 
 networks:
   rede_mensagens:
-    driver: bridge
+    driver: overlay
 
 volumes:
   mensagens_data:
